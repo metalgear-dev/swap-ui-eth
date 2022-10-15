@@ -1,6 +1,16 @@
 import Link from 'next/link';
+import { useConnection } from '../../hooks/useConnection';
+import { shortenAddress } from '../../utils/basic';
+import { WalletButton } from './WalletButton';
 
 const Navbar: React.FC = () => {
+  const connectionQuery = useConnection();
+  const connectWallet = () => {
+    if (connectionQuery.isFetched) {
+      connectionQuery.refetch();
+    }
+  };
+
   return (
     <>
       <nav className="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-neutral-900 shadow">
@@ -17,7 +27,19 @@ const Navbar: React.FC = () => {
             id="example-navbar-warning"
           >
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-              Connect Wallet
+              {connectionQuery.isFetched &&
+              connectionQuery.data &&
+              connectionQuery.data.wallet ? (
+                <WalletButton
+                  caption={shortenAddress(connectionQuery.data.wallet)}
+                  handler={() => {}}
+                />
+              ) : (
+                <WalletButton
+                  caption="Connect Wallet"
+                  handler={connectWallet}
+                />
+              )}
             </ul>
           </div>
         </div>
