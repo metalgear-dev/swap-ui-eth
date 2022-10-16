@@ -1,6 +1,5 @@
 import { ethers } from 'ethers';
 import { useQuery } from 'react-query';
-import { useEffect, useState } from 'react';
 import { getWalletAddress, notify } from '../utils/basic';
 
 export type Connection = {

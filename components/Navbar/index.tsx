@@ -4,10 +4,10 @@ import { shortenAddress } from '../../utils/basic';
 import { WalletButton } from './WalletButton';
 
 const Navbar: React.FC = () => {
-  const connectionQuery = useConnection();
+  const connection = useConnection();
   const connectWallet = () => {
-    if (connectionQuery.isFetched) {
-      connectionQuery.refetch();
+    if (connection.isFetched) {
+      connection.refetch();
     }
   };
 
@@ -27,11 +27,11 @@ const Navbar: React.FC = () => {
             id="example-navbar-warning"
           >
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-              {connectionQuery.isFetched &&
-              connectionQuery.data &&
-              connectionQuery.data.wallet ? (
+              {connection.isFetched &&
+              connection.data &&
+              connection.data.wallet ? (
                 <WalletButton
-                  caption={shortenAddress(connectionQuery.data.wallet)}
+                  caption={shortenAddress(connection.data.wallet)}
                   handler={() => {}}
                 />
               ) : (
