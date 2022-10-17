@@ -14,7 +14,6 @@ export const useSwap = () => {
   const { input } = useSwapCtx();
   const sushiContractABI = [
     'function getAmountOut(uint amountIn, uint reserveIn, uint reserveOut) external pure returns (uint amountOut)',
-    'function getAmountsOut(uint amountIn, address[] calldata path) external view returns (uint[] memory amounts)',
   ];
   const connection = useConnection();
 
