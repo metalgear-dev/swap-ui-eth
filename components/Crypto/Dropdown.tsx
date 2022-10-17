@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Crypto, Cryptos } from '../../utils/web3';
+import { Crypto, Cryptos, SwapInfo } from '../../utils/web3';
 import Modal from '../Modal';
 import CryptoItem from './Item';
 import { TfiAngleDown } from 'react-icons/tfi';
 import { useInput } from '../../hooks/useInput';
 
 interface Props {
+  input: SwapInfo;
   onSelect: (crypto: string) => void;
 }
 
-export const CryptoDropdown: React.FC<Props> = ({ onSelect }: Props) => {
+export const CryptoDropdown: React.FC<Props> = ({ input, onSelect }: Props) => {
   const [open, setOpen] = useState(false);
-  const { input } = useInput();
-
-  useEffect(() => {
-    console.log(input);
-  }, [input]);
 
   return (
     <div>

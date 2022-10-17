@@ -1,11 +1,12 @@
 import { LoadingSpinner } from '../common/LoadingSpinner';
 import { useInput } from '../hooks/useInput';
 import { useSwap } from '../hooks/useSwap';
+import { useSwapCtx } from '../providers/SwapProvider';
 import { CryptoDropdown } from './Crypto/Dropdown';
 import CryptoItem from './Crypto/Item';
 
 const Swap: React.FC = () => {
-  const { input, setInput } = useInput();
+  const { input, setInput } = useSwapCtx();
   const output = useSwap();
 
   return (
@@ -29,6 +30,7 @@ const Swap: React.FC = () => {
             </div>
             <div>
               <CryptoDropdown
+                input={input}
                 onSelect={(crypto) => {
                   console.log('Crypto Changed', crypto);
                   setInput({

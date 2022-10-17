@@ -1,3 +1,5 @@
+import { ethers } from 'ethers';
+
 export type Crypto = {
   name: string;
   logoPath: string;
@@ -32,3 +34,15 @@ export const getCurrentLiquidity = async (
       return null;
   }
 };
+
+export const convertToUint = (
+  inputValue: number | string,
+  decimals = 18
+): ethers.BigNumber => ethers.utils.parseUnits(`${inputValue}`, decimals);
+
+export const convertToReadable = (
+  input: string,
+  decimals = 18,
+  precision = 3
+): string =>
+  parseFloat(ethers.utils.formatUnits(input, decimals)).toFixed(precision);

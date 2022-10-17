@@ -1,12 +1,18 @@
 import { ethers } from 'ethers';
 import { useQuery } from 'react-query';
+import { useSwapCtx } from '../providers/SwapProvider';
 import { SUSHISWAP_ROUTER } from '../utils/constants';
-import { getCurrentLiquidity, SwapInfo } from '../utils/web3';
+import {
+  convertToReadable,
+  convertToUint,
+  getCurrentLiquidity,
+  SwapInfo,
+} from '../utils/web3';
 import { useConnection } from './useConnection';
 import { useInput } from './useInput';
 
 export const useSwap = () => {
-  const { input } = useInput();
+  const { input } = useSwapCtx();
   const sushiContractABI = [
     'function getAmountOut(uint amountIn, uint reserveIn, uint reserveOut) external pure returns (uint amountOut)',
     'function getAmountsOut(uint amountIn, address[] calldata path) external view returns (uint[] memory amounts)',
@@ -16,6 +22,7 @@ export const useSwap = () => {
   return useQuery<SwapInfo>(
     ['Sushi trade', input.crypto, input.amount],
     async () => {
+      console.log('NOW FETCHING');
       const outputCrypto = input.crypto === 'ETH' ? 'USDC' : 'ETH';
       let outputAmount = '0';
       if (connection.data) {
@@ -33,14 +40,13 @@ export const useSwap = () => {
           let result = '0';
           if (curLiquidity) {
             result = await sushiContract.getAmountOut(
-              1,
-              curLiquidity[0],
-              curLiquidity[1]
+              convertToUint(input.amount, 18),
+              convertToUint(curLiquidity[0], 18),
+              convertToUint(curLiquidity[1], 18)
             );
           }
-          console.log(result.toString());
 
-          outputAmount = result.toString();
+          outputAmount = convertToReadable(result);
         } catch (e) {
           console.log('ERROR OCCURED');
           // console.error(e);
