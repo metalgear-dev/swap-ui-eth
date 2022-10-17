@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Crypto, Cryptos, SwapInfo } from '../../utils/web3';
 import Modal from '../Modal';
 import CryptoItem from './Item';
 import { TfiAngleDown } from 'react-icons/tfi';
-import { useInput } from '../../hooks/useInput';
 
 interface Props {
   input: SwapInfo;
@@ -19,7 +18,7 @@ export const CryptoDropdown: React.FC<Props> = ({ input, onSelect }: Props) => {
         onClick={() => setOpen(true)}
         className="px-4 py-2 bg-neutral-800 rounded-full flex justify-center items-center text-2xl"
       >
-        <CryptoItem crypto={input.crypto} imageSize={24} />
+        <CryptoItem crypto={input.crypto} imageType="medium" />
         <TfiAngleDown className="text-sm ml-3" />
       </button>
       <Modal

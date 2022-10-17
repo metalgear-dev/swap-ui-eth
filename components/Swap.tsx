@@ -1,5 +1,4 @@
 import { LoadingSpinner } from '../common/LoadingSpinner';
-import { useInput } from '../hooks/useInput';
 import { useSwap } from '../hooks/useSwap';
 import { useSwapCtx } from '../providers/SwapProvider';
 import { CryptoDropdown } from './Crypto/Dropdown';
@@ -54,7 +53,10 @@ const Swap: React.FC = () => {
                     onClick={() => {}}
                     className="px-4 py-2 bg-neutral-800 rounded-full flex justify-center items-center text-2xl"
                   >
-                    <CryptoItem crypto={output.data.crypto} imageSize={24} />
+                    <CryptoItem
+                      crypto={output.data.crypto}
+                      imageType="medium"
+                    />
                   </button>
                 </div>
               </>
