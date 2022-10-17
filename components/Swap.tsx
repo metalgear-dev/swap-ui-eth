@@ -32,7 +32,6 @@ const Swap: React.FC = () => {
               <CryptoDropdown
                 input={input}
                 onSelect={(crypto) => {
-                  console.log('Crypto Changed', crypto);
                   setInput({
                     crypto,
                     amount: input.amount,

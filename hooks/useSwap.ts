@@ -22,7 +22,6 @@ export const useSwap = () => {
   return useQuery<SwapInfo>(
     ['Sushi trade', input.crypto, input.amount],
     async () => {
-      console.log('NOW FETCHING');
       const outputCrypto = input.crypto === 'ETH' ? 'USDC' : 'ETH';
       let outputAmount = '0';
       if (connection.data) {
@@ -48,8 +47,7 @@ export const useSwap = () => {
 
           outputAmount = convertToReadable(result);
         } catch (e) {
-          console.log('ERROR OCCURED');
-          // console.error(e);
+          console.error(e);
         }
       }
       return {
