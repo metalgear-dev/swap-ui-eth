@@ -24,7 +24,7 @@ const Modal: React.FC<Props> = ({ title, open, onClose, children }: Props) => {
 
       {/* content */}
       <div
-        className={`bg-sky-900 shadow-lg w-[300px] max-w-screen-sm mx-auto p-4 rounded-2xl relative ${
+        className={`bg-sky-900 shadow-lg w-[300px] max-w-screen-sm mx-auto p-4 rounded-lg relative ${
           open ? 'opacity-100' : 'pointer-events-none opacity-0'
         } transition-opacity duration-300 ease-in-out`}
       >

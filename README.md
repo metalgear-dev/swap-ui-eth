@@ -1,4 +1,4 @@
-## Technology Stack
+## Overview
 
 This project was built using [Node v16.17.1] and uses the following technologies:
 
