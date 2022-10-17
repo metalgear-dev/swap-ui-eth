@@ -9,7 +9,6 @@ import {
   SwapInfo,
 } from '../utils/web3';
 import { useConnection } from './useConnection';
-import { useInput } from './useInput';
 
 export const useSwap = () => {
   const { input } = useSwapCtx();
